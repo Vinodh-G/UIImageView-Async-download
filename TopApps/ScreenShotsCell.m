@@ -1,17 +1,18 @@
 //
 //  ScreenShotsCell.m
-//  Assignments~Altimetrix
+//  Top Apps
 //
-//  Created by Vinodh  on 14/12/14.
+//  Created by Vinodh  on 27/12/14.
 //  Copyright (c) 2014 Daston~Rhadnojnainva. All rights reserved.
 //
 
 #import "ScreenShotsCell.h"
-#import "ImageCell.h"
+#import "ImagesViewController.h"
 #import "App.h"
 
-@interface ScreenShotsCell () <UICollectionViewDataSource, UICollectionViewDelegate>
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@interface ScreenShotsCell ()
+@property (nonatomic) ImagesViewController *imageCollectionViewController;
+
 @property (nonatomic) App *app;
 @end
 
@@ -19,33 +20,32 @@
 
 - (void)awakeFromNib
 {
-    [self.collectionView registerClass:[ImageCell class] forCellWithReuseIdentifier:@"imageCellId"];
-
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.imageCollectionViewController = [storyBoard instantiateViewControllerWithIdentifier:@"ImagesViewCOntrollerId"];
+    
+    [self.parentViewController addChildViewController:self.imageCollectionViewController];
+    [self.contentView addSubview:self.imageCollectionViewController.view];
+    
+    UIView *subView = self.imageCollectionViewController.view;
+    
+    [subView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.contentView addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:|-0-[subView]-0-|"
+                               options:NSLayoutFormatDirectionLeadingToTrailing
+                               metrics:nil
+                               views:NSDictionaryOfVariableBindings(subView)]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"V:|-0-[subView]-0-|"
+                               options:NSLayoutFormatDirectionLeadingToTrailing
+                               metrics:nil
+                               views:NSDictionaryOfVariableBindings(subView)]];
 }
 
 - (void)configureCellForApp:(App *)app
 {
     self.app = app;
-    [self.collectionView reloadData];
+    [self.imageCollectionViewController configureCollectionViewForApp:app];
 }
 
-#pragma mark -
-#pragma mark UICollectionViewDataSource
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return 4;//self.app.screenshotURLs.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    ImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageCellId" forIndexPath:indexPath];
-//    [cell configureCellForURL:self.app.screenshotURLs[indexPath.item]];
-    return cell;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [UIScreen mainScreen].bounds.size;
-}
 @end

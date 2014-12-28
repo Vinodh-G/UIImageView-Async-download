@@ -1,8 +1,8 @@
 //
 //  DescriptionCell.h
-//  Assignments~Altimetrix
+//  Top Apps
 //
-//  Created by Vinodh  on 21/12/14.
+//  Created by Vinodh  on 27/12/14.
 //  Copyright (c) 2014 Daston~Rhadnojnainva. All rights reserved.
 //
 
@@ -10,7 +10,6 @@
 
 @class App;
 @interface DescriptionCell : UITableViewCell
-
 - (void)configureCellForApp:(App *)app;
 
 @end

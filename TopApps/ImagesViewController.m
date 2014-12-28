@@ -1,37 +1,52 @@
 //
 //  ImagesViewController.m
-//  TopApps
+//  Top Apps
 //
-//  Created by Vinodh  on 28/12/14.
+//  Created by Vinodh  on 27/12/14.
 //  Copyright (c) 2014 Daston~Rhadnojnainva. All rights reserved.
 //
 
 #import "ImagesViewController.h"
+#import "App.h"
+#import "ImageCell.h"
 
 @interface ImagesViewController ()
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+@property (nonatomic) App *app;
 @end
 
 @implementation ImagesViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)configureCollectionViewForApp:(App *)app
+{
+    self.app = app;
+    [self.collectionView reloadData];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark -
+#pragma mark UICollectionViewDataSource
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.app.screenshotURLs.count;
 }
-*/
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageCellId" forIndexPath:indexPath];
+    [cell configureCellForURL:self.app.screenshotURLs[indexPath.item]];
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [collectionView superview].frame.size;
+}
 
 @end

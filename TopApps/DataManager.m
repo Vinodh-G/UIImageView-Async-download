@@ -1,15 +1,15 @@
 //
 //  DataManager.m
-//  Assignments~Altimetrix
+//  Top Apps
 //
-//  Created by Vinodh  on 26/11/14.
+//  Created by Vinodh  on 27/12/14.
 //  Copyright (c) 2014 Daston~Rhadnojnainva. All rights reserved.
 //
 
 #import "DataManager.h"
 #import "App.h"
 
-static NSString *kTopPaidAppsURL = @"http://phobos.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=2/json";
+static NSString *kTopPaidAppsURL = @"http://phobos.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=125/json";
 static NSString *kFullAppDetailsURL = @"https://itunes.apple.com/lookup?id=%@";
 
 @interface DataManager ()
@@ -62,7 +62,7 @@ static DataManager *staticManager = nil;
         }
         else
         {
-            weakSelf.completionBlock(YES, nil, connectionError);
+            weakSelf.completionBlock(NO, nil, connectionError);
         }
         
     }];
@@ -97,6 +97,9 @@ static DataManager *staticManager = nil;
         App *appDetail = [[App alloc] init];
         appDetail.name = appRecord[@"title"][@"label"];
         appDetail.appId = appRecord[@"id"][@"attributes"][@"im:id"];
+        appDetail.artist = appRecord[@"rights"][@"label"];
+        appDetail.category = appRecord[@"category"][@"attributes"][@"term"];
+        appDetail.price = appRecord[@"im:price"][@"label"];
         NSDictionary *imgDetail = [appRecord[@"im:image"] lastObject];
         if (imgDetail)
             appDetail.iconURLString = imgDetail[@"label"];

@@ -1,8 +1,8 @@
 //
 //  ImageCell.m
-//  Assignments~Altimetrix
+//  Top Apps
 //
-//  Created by Vinodh  on 14/12/14.
+//  Created by Vinodh  on 27/12/14.
 //  Copyright (c) 2014 Daston~Rhadnojnainva. All rights reserved.
 //
 
@@ -10,14 +10,20 @@
 #import "UIImageView+Networking.h"
 
 @interface ImageCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *celImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
 @implementation ImageCell
 
+- (void)awakeFromNib
+{
+    
+}
+
 - (void) configureCellForURL:(NSString *)imageURL
 {
-    [self.celImageView setImageURL:[NSURL URLWithString:imageURL]];
+    [self.imageView setImage:[UIImage imageNamed:@"PlaceHolderBG"]];
+    [self.imageView setImageURL:[NSURL URLWithString:imageURL]];
 }
 @end

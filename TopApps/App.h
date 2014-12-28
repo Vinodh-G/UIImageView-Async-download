@@ -1,8 +1,8 @@
 //
 //  AppRecord.h
-//  Assignments~Altimetrix
+//  Top Apps
 //
-//  Created by Vinodh  on 26/11/14.
+//  Created by Vinodh  on 27/12/14.
 //  Copyright (c) 2014 Daston~Rhadnojnainva. All rights reserved.
 //
 
@@ -13,6 +13,9 @@
 @property (nonatomic) NSString *appId;
 @property (nonatomic) NSString *iconURLString;
 @property (nonatomic) NSString *sellerName;
+@property (nonatomic) NSString *price;
+@property (nonatomic) NSString *category;
+@property (nonatomic) NSString *artist;
 @property (nonatomic) NSString *version;
 @property (nonatomic) NSString *appDescription;
 @property (nonatomic) NSArray  *screenshotURLs;

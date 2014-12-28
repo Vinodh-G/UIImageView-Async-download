@@ -1,8 +1,8 @@
 //
 //  AppCell.m
-//  Assignments~Altimetrix
+//  Top Apps
 //
-//  Created by Vinodh  on 26/11/14.
+//  Created by Vinodh  on 27/12/14.
 //  Copyright (c) 2014 Daston~Rhadnojnainva. All rights reserved.
 //
 
@@ -13,7 +13,9 @@
 @interface AppCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
 
 @property (nonatomic) App *appRecord;
 @end
@@ -26,6 +28,9 @@
     [self.iconView setImage:[UIImage imageNamed:@"appLogo.png"]];
     [self.iconView setImageURL:[NSURL URLWithString:app.iconURLString]];
     self.titleLabel.text = app.name;
+    self.categoryLabel.text = self.appRecord.category;
+    self.priceLabel.text = self.appRecord.price;
+    self.artistLabel.text = self.appRecord.artist;
 }
 
 @end

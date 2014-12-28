@@ -1,8 +1,8 @@
 //
 //  UIImageView+Networking.m
-//  AsyncImageView
+//  Top Apps
 //
-//  Created by Vinodh  on 26/11/14.
+//  Created by Vinodh  on 27/12/14.
 //  Copyright (c) 2014 Daston~Rhadnojnainva. All rights reserved.
 //
 
@@ -22,9 +22,9 @@ typedef void (^CompletionBlock) (BOOL succes, UIImage *image, NSURL *url, NSErro
 @property (nonatomic, getter = isLoading) BOOL loading;
 
 - (ImageDownloader *)startDownloadForURL:(NSURL *)URL
-                           cache:(NSCache *)cache
-                         session:(NSURLSession *)session
-                 completionBlock:(CompletionBlock)completionBlock;
+                                   cache:(NSCache *)cache
+                                 session:(NSURLSession *)session
+                         completionBlock:(CompletionBlock)completionBlock;
 
 - (void)cancel;
 
@@ -34,9 +34,9 @@ typedef void (^CompletionBlock) (BOOL succes, UIImage *image, NSURL *url, NSErro
 @implementation ImageDownloader
 
 - (ImageDownloader *)startDownloadForURL:(NSURL *)URL
-                           cache:(NSCache *)cache
-                         session:(NSURLSession *)session
-                 completionBlock:(CompletionBlock)completionBlock
+                                   cache:(NSCache *)cache
+                                 session:(NSURLSession *)session
+                         completionBlock:(CompletionBlock)completionBlock
 {
     if (URL)
     {
@@ -152,15 +152,15 @@ const char *keyForURLID = "imageURLID";
     {
         ImageDownloader *dowloader = [[ImageDownloader alloc] init];
         [dowloader startDownloadForURL:imageURL  cache:[UIImageView defaultCache] session:[UIImageView defaultSession] completionBlock:^(BOOL succes, UIImage *image, NSURL *imgURL, NSError *error) {
-                if (succes)
-                {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if ([[imgURL absoluteString] isEqualToString:weakSelf.URLId])
-                        {
-                            weakSelf.image = image;
-                        }
-                    });
-                }
+            if (succes)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([[imgURL absoluteString] isEqualToString:weakSelf.URLId])
+                    {
+                        weakSelf.image = image;
+                    }
+                });
+            }
         }];
     }
     else
