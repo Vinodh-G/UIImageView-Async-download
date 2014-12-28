@@ -16,7 +16,9 @@ Include UIImageView+Networking.h into the file were it requires set remote image
 set the remote image Url as shown above to the imageView.
 That's it :)
 
-The Demo app shows the Top Paid Apps icons and screenshoots of the apps
-The App is developed in iOS 8.0 compactible. 
+The demo app show the usage of UIImageView Extension. The app downloads all top paid itunes app details like icons, screenshots, summary, etc. and display them appropriately.
+
+app is auto layout enabled, which uses resizable UITableViewCell dynamically calculating the cell height,
+app uses NSURLSessions to download the image from the remote server using NSURLSessionDownloadTask.
 
 
