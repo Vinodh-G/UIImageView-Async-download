@@ -120,5 +120,8 @@ static DataManager *staticManager = nil;
     app.appDescription = appDetails[@"description"];
     app.screenshotURLs = appDetails[@"screenshotUrls"];
     app.itunesArtWorkURL = appDetails[@"artworkUrl512"];
+    app.avgRatings = appDetails[@"averageUserRating"];
+    app.appSize = appDetails[@"fileSizeBytes"];
 }
+
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1933B0131A511AFB00ADF26F /* InformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933B0121A511AFB00ADF26F /* InformationCell.m */; };
 		194115EE1A4EB6D000467575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 194115ED1A4EB6D000467575 /* main.m */; };
 		194115F11A4EB6D000467575 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 194115F01A4EB6D000467575 /* AppDelegate.m */; };
 		194115F41A4EB6D000467575 /* AppListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194115F31A4EB6D000467575 /* AppListViewController.m */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1933B0111A511AFB00ADF26F /* InformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationCell.h; sourceTree = "<group>"; };
+		1933B0121A511AFB00ADF26F /* InformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationCell.m; sourceTree = "<group>"; };
 		194115E81A4EB6D000467575 /* TopApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		194115EC1A4EB6D000467575 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		194115ED1A4EB6D000467575 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -67,6 +70,8 @@
 		1941162B1A4EC6EA00467575 /* ScreenShotsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenShotsCell.m; sourceTree = "<group>"; };
 		19A004501A4FCDB9002DADCF /* ImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesViewController.h; sourceTree = "<group>"; };
 		19A004511A4FCDB9002DADCF /* ImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesViewController.m; sourceTree = "<group>"; };
+		19C9C9451A525D8A004F3E05 /* ParallaxHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxHeaderView.h; sourceTree = "<group>"; };
+		19C9C9461A525D8A004F3E05 /* ParallaxHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +174,8 @@
 		194116191A4EB96900467575 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				19C9C9451A525D8A004F3E05 /* ParallaxHeaderView.h */,
+				19C9C9461A525D8A004F3E05 /* ParallaxHeaderView.m */,
 				194116261A4EC6EA00467575 /* DescriptionCell.h */,
 				194116271A4EC6EA00467575 /* DescriptionCell.m */,
 				194116281A4EC6EA00467575 /* ImageCell.h */,
@@ -177,6 +184,8 @@
 				1941162B1A4EC6EA00467575 /* ScreenShotsCell.m */,
 				1941161A1A4EB97500467575 /* AppCell.h */,
 				1941161B1A4EB97500467575 /* AppCell.m */,
+				1933B0111A511AFB00ADF26F /* InformationCell.h */,
+				1933B0121A511AFB00ADF26F /* InformationCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -318,6 +327,7 @@
 				194115F41A4EB6D000467575 /* AppListViewController.m in Sources */,
 				194116141A4EB94A00467575 /* DataManager.m in Sources */,
 				1941162C1A4EC6EA00467575 /* DescriptionCell.m in Sources */,
+				1933B0131A511AFB00ADF26F /* InformationCell.m in Sources */,
 				1941161C1A4EB97500467575 /* AppCell.m in Sources */,
 				194116201A4EB9E900467575 /* UIImageView+Networking.m in Sources */,
 				194115F11A4EB6D000467575 /* AppDelegate.m in Sources */,

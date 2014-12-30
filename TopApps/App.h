@@ -17,7 +17,11 @@
 @property (nonatomic) NSString *category;
 @property (nonatomic) NSString *artist;
 @property (nonatomic) NSString *version;
+@property (nonatomic) NSNumber *avgRatings;
 @property (nonatomic) NSString *appDescription;
+@property (nonatomic) NSString *appSize;
 @property (nonatomic) NSArray  *screenshotURLs;
 @property (nonatomic) NSString *itunesArtWorkURL;
+
+- (NSString *)sizeString;
 @end

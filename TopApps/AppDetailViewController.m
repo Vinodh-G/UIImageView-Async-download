@@ -11,6 +11,7 @@
 #import "DataManager.h"
 #import "ScreenShotsCell.h"
 #import "DescriptionCell.h"
+#import "InformationCell.h"
 
 @interface AppDetailViewController ()
 @property (nonatomic) NSString *loadingTitle;
@@ -18,7 +19,8 @@
 
 typedef enum {
     eDescriptionField,
-    eScreenShotsField
+    eScreenShotsField,
+    eInformationField
 }EAppDetailFields;
 
 static CGFloat kLoadingCellHeight = 111.0f;
@@ -55,7 +57,7 @@ static CGFloat kLoadingCellHeight = 111.0f;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = self.appRecord.screenshotURLs.count ? 2 : 1;
+    NSInteger count = self.appRecord.screenshotURLs.count ? 3 : 1;
     return count;
 }
 
@@ -118,6 +120,15 @@ static CGFloat kLoadingCellHeight = 111.0f;
             [screenShotCell configureCellForApp:self.appRecord];
             cell = screenShotCell;
         }
+            break;
+            
+        case eInformationField:
+        {
+            InformationCell *inforCell = [self.tableView dequeueReusableCellWithIdentifier:@"InfoCellId"];
+            [inforCell configureCellForApp:self.appRecord];
+            cell = inforCell;
+        }
+            
         break;
     }
     return cell;
@@ -129,6 +140,7 @@ static CGFloat kLoadingCellHeight = 111.0f;
     switch (path.row)
     {
         case eDescriptionField:
+        case eInformationField:
         {
             height = self.tableView.rowHeight;
         }
