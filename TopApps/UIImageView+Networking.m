@@ -19,7 +19,6 @@ typedef void (^CompletionBlock) (BOOL succes, UIImage *image, NSURL *url, NSErro
 @property (nonatomic, strong) NSURL *URL;
 @property (nonatomic, strong) NSCache *cache;
 @property (nonatomic, copy) CompletionBlock downloadedBlock;
-@property (nonatomic, getter = isLoading) BOOL loading;
 
 - (ImageDownloader *)startDownloadForURL:(NSURL *)URL
                                    cache:(NSCache *)cache
@@ -56,19 +55,11 @@ typedef void (^CompletionBlock) (BOOL succes, UIImage *image, NSURL *url, NSErro
     if (image && self.URL)
     {
         [self.cache setObject:image forKey:self.URL];
-        self.loading = NO;
     }
 }
 
 - (void)start
 {
-    if (self.loading)
-    {
-        return;
-    }
-    
-    self.loading = YES;
-    
     NSURLSessionDownloadTask *downloadImage = [self.connectionSession downloadTaskWithRequest:[NSURLRequest requestWithURL:self.URL] completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
         if (!error)
         {
@@ -102,8 +93,21 @@ typedef void (^CompletionBlock) (BOOL succes, UIImage *image, NSURL *url, NSErro
 @implementation UIImageView (Networking)
 
 const char *keyForURLID = "imageURLID";
+const char *keyForCompletionBlock = "completionBlockID";
 
 @dynamic URLId;
+@dynamic completionBlock;
+
+
+- (DownloadCompletionBlock)completionBlock
+{
+    return objc_getAssociatedObject(self, keyForCompletionBlock);
+}
+
+- (void)setCompletionBlock:(DownloadCompletionBlock)completionBlock
+{
+    objc_setAssociatedObject(self, keyForCompletionBlock, completionBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
 
 - (NSString *)URLId
 {
@@ -147,20 +151,31 @@ const char *keyForURLID = "imageURLID";
 {
     self.URLId = [imageURL absoluteString];
     UIImage *img = [[UIImageView defaultCache] objectForKey:imageURL];
-    __weak UIImageView *weakSelf = self;
     if (!img)
     {
         ImageDownloader *dowloader = [[ImageDownloader alloc] init];
         [dowloader startDownloadForURL:imageURL  cache:[UIImageView defaultCache] session:[UIImageView defaultSession] completionBlock:^(BOOL succes, UIImage *image, NSURL *imgURL, NSError *error) {
-            if (succes)
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([[imgURL absoluteString] isEqualToString:weakSelf.URLId])
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (succes)
+                {
+                    if ([[imgURL absoluteString] isEqualToString:self.URLId])
                     {
-                        weakSelf.image = image;
+                        self.image = image;                        
+                        if (self.completionBlock)
+                        {
+                            self.completionBlock(YES, image, nil);
+                        }
                     }
-                });
-            }
+                }
+                else
+                {
+                    if (self.completionBlock)
+                    {
+                        self.completionBlock(NO, nil, error);
+                    }
+                }
+            });
         }];
     }
     else
@@ -172,6 +187,12 @@ const char *keyForURLID = "imageURLID";
 - (NSURL *)imageURL
 {
     return [NSURL URLWithString:self.URLId];
+}
+
+- (void)setImageURL:(NSURL *)imageURL withCompletionBlock:(DownloadCompletionBlock)block
+{
+    self.completionBlock = block;
+    [self setImageURL:imageURL];
 }
 
 @end

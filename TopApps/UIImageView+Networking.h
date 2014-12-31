@@ -10,7 +10,13 @@
 #import <objc/runtime.h>
 
 // UIImageView Extentions resposipble for downloading the image from remote server.
+
+typedef void (^DownloadCompletionBlock) (BOOL succes, UIImage *image, NSError *error);
+
 @interface UIImageView (Networking)
 @property (nonatomic) NSURL *imageURL;
 @property (nonatomic) NSString *URLId;
+@property (nonatomic, copy) DownloadCompletionBlock completionBlock;
+
+- (void)setImageURL:(NSURL *)imageURL withCompletionBlock:(DownloadCompletionBlock)block;
 @end
