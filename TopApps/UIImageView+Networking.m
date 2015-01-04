@@ -96,18 +96,6 @@ const char *keyForURLID = "imageURLID";
 const char *keyForCompletionBlock = "completionBlockID";
 
 @dynamic URLId;
-@dynamic completionBlock;
-
-
-- (DownloadCompletionBlock)completionBlock
-{
-    return objc_getAssociatedObject(self, keyForCompletionBlock);
-}
-
-- (void)setCompletionBlock:(DownloadCompletionBlock)completionBlock
-{
-    objc_setAssociatedObject(self, keyForCompletionBlock, completionBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
 
 - (NSString *)URLId
 {
@@ -149,6 +137,16 @@ const char *keyForCompletionBlock = "completionBlockID";
 
 - (void)setImageURL:(NSURL *)imageURL
 {
+    [self setImageURL:imageURL withCompletionBlock:nil];
+}
+
+- (NSURL *)imageURL
+{
+    return [NSURL URLWithString:self.URLId];
+}
+
+- (void)setImageURL:(NSURL *)imageURL withCompletionBlock:(DownloadCompletionBlock)block
+{
     self.URLId = [imageURL absoluteString];
     UIImage *img = [[UIImageView defaultCache] objectForKey:imageURL];
     if (!img)
@@ -161,18 +159,18 @@ const char *keyForCompletionBlock = "completionBlockID";
                 {
                     if ([[imgURL absoluteString] isEqualToString:self.URLId])
                     {
-                        self.image = image;                        
-                        if (self.completionBlock)
+                        self.image = image;
+                        if (block)
                         {
-                            self.completionBlock(YES, image, nil);
+                            block(YES, image, nil);
                         }
                     }
                 }
                 else
                 {
-                    if (self.completionBlock)
+                    if (block)
                     {
-                        self.completionBlock(NO, nil, error);
+                        block(NO, nil, error);
                     }
                 }
             });
@@ -182,17 +180,6 @@ const char *keyForCompletionBlock = "completionBlockID";
     {
         self.image = img;
     }
-}
-
-- (NSURL *)imageURL
-{
-    return [NSURL URLWithString:self.URLId];
-}
-
-- (void)setImageURL:(NSURL *)imageURL withCompletionBlock:(DownloadCompletionBlock)block
-{
-    self.completionBlock = block;
-    [self setImageURL:imageURL];
 }
 
 @end
