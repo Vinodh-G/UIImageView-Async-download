@@ -24,6 +24,8 @@
 		1941162D1A4EC6EA00467575 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 194116291A4EC6EA00467575 /* ImageCell.m */; };
 		1941162E1A4EC6EA00467575 /* ScreenShotsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941162B1A4EC6EA00467575 /* ScreenShotsCell.m */; };
 		19A004521A4FCDB9002DADCF /* ImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A004511A4FCDB9002DADCF /* ImagesViewController.m */; };
+		872C1C411B93346600E6F097 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872C1C401B93346600E6F097 /* StoreKit.framework */; };
+		872C1C431B93346700E6F097 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872C1C421B93346700E6F097 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,9 @@
 		19A004511A4FCDB9002DADCF /* ImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesViewController.m; sourceTree = "<group>"; };
 		19C9C9451A525D8A004F3E05 /* ParallaxHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxHeaderView.h; sourceTree = "<group>"; };
 		19C9C9461A525D8A004F3E05 /* ParallaxHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxHeaderView.m; sourceTree = "<group>"; };
+		872C1C401B93346600E6F097 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		872C1C421B93346700E6F097 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		872C1C441B93347B00E6F097 /* TopApps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TopApps.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				872C1C411B93346600E6F097 /* StoreKit.framework in Frameworks */,
+				872C1C431B93346700E6F097 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +102,8 @@
 		194115DF1A4EB6D000467575 = {
 			isa = PBXGroup;
 			children = (
+				872C1C421B93346700E6F097 /* GameKit.framework */,
+				872C1C401B93346600E6F097 /* StoreKit.framework */,
 				194115EA1A4EB6D000467575 /* TopApps */,
 				194116041A4EB6D000467575 /* TopAppsTests */,
 				194115E91A4EB6D000467575 /* Products */,
@@ -113,6 +122,7 @@
 		194115EA1A4EB6D000467575 /* TopApps */ = {
 			isa = PBXGroup;
 			children = (
+				872C1C441B93347B00E6F097 /* TopApps.entitlements */,
 				194116151A4EB95400467575 /* Model */,
 				194116191A4EB96900467575 /* View */,
 				194116211A4EB9FD00467575 /* Controller */,
@@ -271,6 +281,17 @@
 					194115E71A4EB6D000467575 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = VEKM6B26TS;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 					194116001A4EB6D000467575 = {
 						CreatedOnToolsVersion = 6.1.1;
