@@ -71,7 +71,6 @@ static DataManager *staticManager = nil;
 - (void)downloadAppFullDetailsForApp:(App *)app withCompletionBlock:(AppDetailsCompletionBlock)block
 {
     __weak DataManager *weakSelf = self;
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kFullAppDetailsURL, app.appId]]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
