@@ -9,7 +9,7 @@
 #import "DataManager.h"
 #import "App.h"
 
-static NSString *kTopPaidAppsURL = @"http://phobos.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=126/json";
+static NSString *kTopPaidAppsURL = @"http://phobos.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=127/json";
 static NSString *kFullAppDetailsURL = @"https://itunes.apple.com/lookup?id=%@";
 
 @interface DataManager ()
