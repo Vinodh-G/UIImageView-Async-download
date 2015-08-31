@@ -102,7 +102,9 @@ static DataManager *staticManager = nil;
         appDetail.price = appRecord[@"im:price"][@"label"];
         NSDictionary *imgDetail = [appRecord[@"im:image"] lastObject];
         if (imgDetail)
+        {
             appDetail.iconURLString = imgDetail[@"label"];
+        }
         
         [recordObjects addObject:appDetail];
     }
