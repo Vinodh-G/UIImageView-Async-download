@@ -105,7 +105,6 @@ static DataManager *staticManager = nil;
         {
             appDetail.iconURLString = imgDetail[@"label"];
         }
-        
         [recordObjects addObject:appDetail];
     }
     
